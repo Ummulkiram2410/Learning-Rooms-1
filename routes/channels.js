@@ -27,4 +27,11 @@ router.post(
 );
 
 router.get("/channel", channelController.getChannel);
+
+router.post("/events", channelController.events);
+
+router.get("/eventremove/:id", channelController.eventdelete);
+
+router.get("/leaveChannel", channelController.leaveChannel);
+
 module.exports = router;

@@ -53,6 +53,8 @@ router.post(
 
 router.get("/logout", signIncontroller.postLogout);
 
+router.get("/deleteAccount", signIncontroller.deleteAccount);
+
 router.get("/reset", signIncontroller.getReset);
 
 router.post("/reset", signIncontroller.postReset);

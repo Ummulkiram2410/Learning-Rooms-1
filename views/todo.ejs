@@ -169,20 +169,6 @@ td.task{
             	</tr>
 
             	<tbody>
-            	<!--	<?php
-            		// select all tasks if page is visited or refreshed
-            		$tasks = mysqli_query($db, "SELECT * FROM todo");
-
-            		$i = 1;
-                    while ($row = mysqli_fetch_array($tasks)) { ?>
-            			<tr>
-            				<td class="number" width="8"> <?php echo $i; ?> </td>
-            				<td class="task" width="25px"> <?php echo $row['task']; ?> </td>
-            				<td class="action">
-            					<a href="profile.php?del_task=<?php echo $row['id'] ?>" >Remove</a>
-            				</td>
-            			</tr>
-            		<?php $i++; } ?>-->
                     <% if(tasks.length > 0){ %>
                     
                         <% var i=1 %>
@@ -229,7 +215,7 @@ $(".userimage").click(function(){
   			$(".dropdown-content").toggle();
 		});
 		$("#applogo").click(function(){
-			window.location.href = "channels.php"
+			window.location.href = "/channels"
 		})
 
 </script>

@@ -1,7 +1,7 @@
 //const http = require("http");
 const path = require("path");
 const bodyParser = require("body-parser");
-const multer = require('multer');
+const multer = require("multer");
 const express = require("express");
 //const csrf = require("csurf");
 
@@ -11,7 +11,6 @@ const flash = require("connect-flash");
 
 const app = express();
 const Login = require("./models/database");
-
 
 // Below 3 for chat
 var http = require("http").Server(app);
@@ -25,15 +24,15 @@ app.use(express.static(__dirname + "/public"));
 const SignIn = require("./routes/SignIn");
 const channels = require("./routes/channels");
 const chats = require("./routes/chatRoutes");
-const files = require('./routes/file');
+const files = require("./routes/file");
 
 const fileStorage = multer.diskStorage({
-  destination : (req, file, cb) => {
-    cb(null, 'Notefiles');
+  destination: (req, file, cb) => {
+    cb(null, "Notefiles");
   },
-  filename : (req, file, cb) =>{
-    cb(null, Math.random().toString(36).substr(2, 6) + '-' + file.originalname)
-  }
+  filename: (req, file, cb) => {
+    cb(null, Math.random().toString(36).substr(2, 6) + "-" + file.originalname);
+  },
 });
 
 app.get("/favicon.ico", (req, res) => res.status(204));
@@ -42,7 +41,7 @@ app.get("/favicon.ico", (req, res) => res.status(204));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({storage : fileStorage}).single('file'))
+app.use(multer({ storage: fileStorage }).single("file"));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
@@ -61,30 +60,29 @@ app.use(files);
 //server.listen(3000);
 
 // ======================= Chat Code START ===============================
-const Msg = require('./models/chatmessage');
+const Msg = require("./models/chatmessage");
 
 app.use("/channel", (req, res) => {
-  res.render('insideChannel');
-})
+  res.render("insideChannel");
+});
 
 app.get("/messages", (req, res) => {
-  Msg.find({'channelId':"user1"})
-  .then(messages => {
-    res.send(messages);
-  })
-  .catch(err => console.log(err));
+  Msg.find({ channelId: req.session.code })
+    .then((messages) => {
+      res.send(messages);
+    })
+    .catch((err) => console.log(err));
 });
 
 app.post("/messages", async (req, res) => {
   try {
-
     const name = req.body.name;
     const msg = req.body.message;
-    const channelId = "user1";
+    const channelId = req.session.code;
     var message = new Msg({
-      name : name,
-      message : msg,
-      channelId : channelId
+      name: name,
+      message: msg,
+      channelId: channelId,
     });
 
     var savedMessage = await message.save();
@@ -103,16 +101,17 @@ app.post("/messages", async (req, res) => {
   }
 });
 
-io.on("connection", socket => {
+io.on("connection", (socket) => {
   console.log("a user has been connected");
-})
+});
 
 // ======================= Chat Code END ===============================
 
 // app.use()
 
-const JoeyDB = 'mongodb+srv://Jay:MongoDB.DB@cluster0.q00ek.mongodb.net/letsee';
-const UmmulDB = 'mongodb+srv://Ummulkiram:Password@cluster0.ruu7m.mongodb.net/LearningRoom?retryWrites=true&w=majority';
+const JoeyDB = "mongodb+srv://Jay:MongoDB.DB@cluster0.q00ek.mongodb.net/letsee";
+const UmmulDB =
+  "mongodb+srv://Ummulkiram:Password@cluster0.ruu7m.mongodb.net/LearningRoom?retryWrites=true&w=majority";
 
 mongoose.connect(
   UmmulDB,

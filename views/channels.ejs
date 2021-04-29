@@ -23,8 +23,7 @@
 			<div class="userimage">
 				<img src="user.png" alt="Error">
 				<div class="dropdown-content">
-					<a href="#">Link 1</a>
-					<a href="#">Link 2</a>
+					<a href="/deleteAccount">Delete Account</a>
 					<a href="/logout">Logout</a>
 				</div>
 			</div>
@@ -53,15 +52,17 @@
 			<h1> <% channels %></h1>
 			<% if(channels.length > 0){ %>
 				<% for(let channel of channels){ %>
-					<li data-channel= <%=channel.code %> data-name= <%=username %>>
+					<li data-channel= <%=channel.code %>>
 						<div class='group'>
 							<div class='photo'>
 								<img src='https://gstatic.com/classroom/themes/img_code.jpg'>
 							</div>
 							<div class='description'>
+								<center>
 								<h4>
-									channel.name
+									<%=channel.name %>
 								</h4>
+								</center>
 							</div>
 						</div>
 					</li>
@@ -124,7 +125,7 @@
                 let channelcode = this.getAttribute("data-channel");
 				let name = this.getAttribute("data-name");
                 console.log(channelcode);
-                window.location.href = "/channel/?code="+channelcode+"&username="+name;
+                window.location.href = "/channel/?code="+channelcode;
             });
        
 
@@ -137,7 +138,7 @@
 		});
 
 		$("#applogo").click(function(){
-			window.location.href = "channels.php"
+			window.location.href = "/channels"
 		})
 
 		$("#join").click(function(){

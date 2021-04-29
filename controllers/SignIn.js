@@ -233,3 +233,11 @@ exports.postNewPassword = (req, res, next) => {
 exports.mainPage = (req, res, next) => {
   res.render("index");
 };
+
+exports.deleteAccount = (req, res, next) => {
+  const email = req.session.user.email;
+  Login.deleteOne({ email: email }, function (err, obj) {
+    if (err) throw err;
+  });
+  res.redirect("/main-page");
+};

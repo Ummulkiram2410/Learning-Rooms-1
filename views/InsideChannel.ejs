@@ -241,6 +241,7 @@
         border-radius: 8px;
         background: #1a73e8;
         opacity: 0.9;
+        border: none
       }
 
       .addBtn:hover {
@@ -289,15 +290,14 @@
         <img id="applogo" src="applogo.png" alt="" />
       </div>
       <div class="name" style="position: absolute; left: 38vw; top: 10px">
-        <h5>Btech-3 Computer Engineering</h5>
+        <center><h5><%=channelName %></h5></center>
       </div>
       <div class="user">
         <div class="userimage">
           <img src="user.png" alt="Error" />
           <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+            <a href="/leaveChannel">Leave Channel</a>
+            <a href="/logout">Logout</a>
           </div>
         </div>
       </div>
@@ -319,15 +319,20 @@
           <hr />
           <div style="background-color: whitesmoke;">
           <div id="myDIV" class="header" style="margin-top: 2px;">
-            <input type="text" id="myInput" placeholder="Add events..." />
-            <span onclick="newElement()" class="addBtn">Add</span>
+            <form action="/events" method="POST">
+            <input type="text" name="task" id="myInput" placeholder="Add events..." />
+            <button class="addBtn">Add</button>
+            </form>
           </div>
           <div style="overflow-y: scroll">
-            <ul class="list-group" id="myUL">
-              <li>Hit the gym</li>
-              <li>Pay bills</li>
-              <li>Read a book</li>
-            </ul>
+            <ul class="list-group" id="myUL"></ul>
+            <% if(tasks.length > 0){ %>
+            <% for(let task of tasks){ %>
+              <li style="display: flex;justify-content: space-between;"> <label style="padding-left: 4px;"><%=task.task%></label>
+              <a style="margin-right: 10px;color: #000;" href="/eventremove/<%= task._id %>">X</a> </li>
+            <% } %>
+           <% } %>
+           </ul>
           </div>
           </div>
         </div>
@@ -354,7 +359,7 @@
               </li>
               <li class="list-group-item">
                 <a href="#">HTML</a><br/>
-                <span style="margin-left: 12px;"> - addy</span>
+                <span style="margin-left: 12px;"> - Ummul</span>
               </li>
             </ul>
           </div>
@@ -445,16 +450,16 @@
         }
       }
 
-      var car = document.getElementById("myUL");
-      var myNodelist = car.getElementsByTagName("li");
-      var i;
-      for (i = 0; i < myNodelist.length; i++) {
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-        myNodelist[i].appendChild(span);
-      }
+      // var car = document.getElementById("myUL");
+      // var myNodelist = car.getElementsByTagName("li");
+      // var i;
+      // for (i = 0; i < myNodelist.length; i++) {
+      //   var span = document.createElement("SPAN");
+      //   var txt = document.createTextNode("\u00D7");
+      //   span.className = "close";
+      //   span.appendChild(txt);
+      //   myNodelist[i].appendChild(span);
+      // }
 
       // Click on a close button to hide the current list item
       var close = document.getElementsByClassName("close");
@@ -509,7 +514,7 @@
         $(".dropdown-content").toggle();
       });
       $("#applogo").click(function () {
-        window.location.href = "channels.php";
+        window.location.href = "/channels";
       });
     </script>
   </body>

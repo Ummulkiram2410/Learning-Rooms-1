@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-const eol = require("eol");
-
 const { validationResult } = require("express-validator/check");
 
 const channelDatabase = require("../models/channelDatabase");
@@ -9,6 +7,8 @@ const channelDatabase = require("../models/channelDatabase");
 const todo = require("../models/todoDatabase");
 
 const userChannelDatabase = require("../models/userChannelDatabase");
+
+const eventDatabase = require("../models/eventDatabase");
 const session = require("express-session");
 
 exports.getChannels = (req, res, next) => {
@@ -79,6 +79,7 @@ exports.createChannel = (req, res, next) => {
       const UserChannel = new userChannelDatabase({
         email: req.session.user.email,
         code: code,
+        name: name,
       });
       UserChannel.save()
         .then((result) => {
@@ -101,9 +102,12 @@ exports.joinChannel = (req, res, next) => {
       req.flash("error", "No such channel exists.");
       return res.redirect("/channels");
     } else {
+      const name = channel.name;
+      console.log(name);
       const userChannel = new userChannelDatabase({
         email: session.user.email,
         code: code,
+        name: name,
       });
       userChannel
         .save()
@@ -122,10 +126,58 @@ exports.getChannel = (req, res, next) => {
   var code = req.query.code;
   console.log(code);
   req.session.code = code;
-  channelDatabase.findOne({ code: code }).then((channel) => {
-    //req.session.channel = channel;
-    req.session.channelName = channel.name;
+  let firstquery = new Promise((resolve, reject) => {
+    userChannelDatabase.find({ code: req.session.code }).then((channel) => {
+      //req.session.channel = channel;
+      console.log(channel[0].name);
+      console.log("HI");
+      req.session.channelName = channel[0].name;
+      console.log(code);
+    });
   });
-  console.log(req.session.user.username);
-  res.render("InsideChannel", { username: req.session.user.username });
+
+  //console.log(req.session.user.username);
+  eventDatabase.find({ code: req.session.code }).then((tasks) => {
+    res.render("insideChannel", {
+      tasks: tasks,
+      username: req.session.user.username,
+      channelName: req.session.channelName,
+    });
+  });
+};
+
+exports.events = (req, res, next) => {
+  const events = new eventDatabase({
+    code: req.session.code,
+    task: req.body.task,
+  });
+  events
+    .save()
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return res.redirect("/channel/?code=" + req.session.code);
+};
+
+exports.eventdelete = (req, res, next) => {
+  const id = req.params.id;
+  console.log(req.session.code);
+  eventDatabase.findByIdAndRemove(id, (err) => {
+    if (err) return res.send(500, err);
+    res.redirect("/channel/?code=" + req.session.code);
+  });
+};
+
+exports.leaveChannel = (req, res, next) => {
+  const email = req.session.user.email;
+  userChannelDatabase.deleteOne(
+    { email: email, code: req.session.code },
+    function (err, obj) {
+      if (err) throw err;
+    }
+  );
+  res.redirect("/channels");
 };
