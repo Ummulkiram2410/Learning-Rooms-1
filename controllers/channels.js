@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-const eol = require("eol");
-
 const { validationResult } = require("express-validator/check");
 
 const channelDatabase = require("../models/channelDatabase");
@@ -125,5 +123,5 @@ exports.getChannel = (req, res, next) => {
     req.session.channel = channel;
     req.session.channelName = channel.name;
   });
-  res.render("channel");
+  res.render("insideChannel", {username : "james"} );
 };
