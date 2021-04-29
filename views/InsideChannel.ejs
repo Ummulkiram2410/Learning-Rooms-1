@@ -29,6 +29,9 @@
         top: -34px;
       }
 
+      ::-webkit-scrollbar{
+          display: none;
+      }
       .userimage > img {
         width: 30px;
         height: 30px;
@@ -243,6 +246,25 @@
       .addBtn:hover {
         opacity: 1;
       }
+
+      .chat{
+          border: 1px solid silver;
+          border-radius: 10px;
+          border-bottom: 2px solid gray;
+          margin-bottom: 2px;
+          background-color:rgba(255,255,255,0.5);
+      }
+      .user-name{
+          margin-left: 5%;
+          font-weight: bold;
+          color: black;
+      }
+      .chat-message{
+          margin-left: 5%;
+          font-size: 12px;
+          color: gray;
+      }
+
     </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -295,7 +317,8 @@
         >
           <h4 style="text-align: left">Upcoming Events</h4>
           <hr />
-          <div id="myDIV" class="header">
+          <div style="background-color: whitesmoke;">
+          <div id="myDIV" class="header" style="margin-top: 2px;">
             <input type="text" id="myInput" placeholder="Add events..." />
             <span onclick="newElement()" class="addBtn">Add</span>
           </div>
@@ -305,6 +328,7 @@
               <li>Pay bills</li>
               <li>Read a book</li>
             </ul>
+          </div>
           </div>
         </div>
         <div class="col-sm-5 list" style="height: 70vh">
@@ -321,42 +345,43 @@
           <div style="overflow-y: scroll; height: 60vh; margin-top: 4px">
             <ul class="list-group" id="myMenu">
               <li class="list-group-item">
-                <a href="#">HTML</a>
+                <a href="#">HTML</a><br/>
+                <span style="margin-left: 12px;">  - addy</span>
               </li>
-              <li class="list-group-item"><a href="#">CSS</a></li>
-              <li class="list-group-item"><a href="#">JavaScript</a></li>
+              <li class="list-group-item">
+                <a href="#">jahsdkjashdkashdakjs</a><br/>
+                <span style="margin-left: 12px;"> - addy</span>
+              </li>
+              <li class="list-group-item">
+                <a href="#">HTML</a><br/>
+                <span style="margin-left: 12px;"> - addy</span>
+              </li>
             </ul>
           </div>
           <br />
         </div>
-        <div class="col-sm-3.5" style="width: 25vw">
+        <div class="col-sm-3.5" style="width: 25vw;">
           <h4 style="text-align: left">Text Channel</h4>
           <hr />
 
 <!--============================== Jaimin's Code Start======================== -->
 
 
-         <!-- <div style="background-color: red; height: 50vh"> -->
+         <div style="background-color:whitesmoke; height: 77vh; border-radius: 12px;">
 
           <div class="chatbox">
-            <div class="chatlogs">
-              <div class="chat" id="messages"></div>
-            </div>
-      
-            <div class="chat-form">
+            <div class="chatlogs" style="padding: 8px;overflow-y: scroll">
+              <div class="chat" id="messages" style="background-image: url(https://res.cloudinary.com/practicaldev/image/fetch/s--WAKqnINn--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/tw0nawnvo0zpgm5nx4fp.png);background-color:green;;min-height:55vh ; max-height: 55vh;overflow-y: scroll; padding: 8px;border-radius: 14px;;">
                 
-              <input id="name" class="form-control" placeholder="name" />
-      
-              <br />
-      
-              <textarea
+              </div>
+            </div>
+            <div class="chat-form" style="display: flex; flex-direction: column;padding-left: 8px;padding-right: 8px; align-items: center; margin-top:none;">
+            <textarea style="width: 24vw;height: 10vh; margin-bottom: 6px;resize: none;"
                id="message"
                class="form-control"
-               placeholder="message"
+               placeholder="Message.."
              ></textarea>
-      
-              <br />
-              <button id="send">Send</button>
+              <button id="send" class="addBtn" style="border: none;">Send</button>
             </div>
           </div>
       
@@ -366,9 +391,8 @@
             // ========= Start of document ready function =======
             $(() => {
               $("#send").click(() => {
-                console.log("yes");
                 var message = {
-                  name: $("#name").val(),
+                  name: "Jaimin",  //----- Session user name here
                   message: $("#message").val()
                 };
                 postMessage(message);
@@ -380,7 +404,8 @@
       
             function addMessage(message) {
               $("#messages").append(
-                `<p class="user-name"> ${message.name} </p> <p class="chat-message"> ${message.message} </p>`
+                `<div class="chat"><p class="user-name"> ${message.name} </p> <p class="chat-message"> ${message.message} </p></div>`
+          // `<p class="user-name"> ${message.name} </p> <p class="chat-message"> ${message.message} </p>`
               );
             }
       

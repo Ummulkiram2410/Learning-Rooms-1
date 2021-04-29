@@ -1,6 +1,7 @@
 //const http = require("http");
 const path = require("path");
 const bodyParser = require("body-parser");
+const multer = require('multer');
 const express = require("express");
 //const csrf = require("csurf");
 
@@ -24,6 +25,16 @@ app.use(express.static(__dirname + "/public"));
 const SignIn = require("./routes/SignIn");
 const channels = require("./routes/channels");
 const chats = require("./routes/chatRoutes");
+const files = require('./routes/file');
+
+const fileStorage = multer.diskStorage({
+  destination : (req, file, cb) => {
+    cb(null, 'Notefiles');
+  },
+  filename : (req, file, cb) =>{
+    cb(null, Math.random().toString(36).substr(2, 6) + '-' + file.originalname)
+  }
+});
 
 app.get("/favicon.ico", (req, res) => res.status(204));
 
@@ -31,6 +42,7 @@ app.get("/favicon.ico", (req, res) => res.status(204));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multer({storage : fileStorage}).single('file'))
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
@@ -41,6 +53,7 @@ app.use(flash());
 
 app.use(SignIn);
 app.use(channels);
+app.use(files);
 //app.use(chats);  // Chats not updating with this... everything else works well.
 
 //app.use(errorController.get404);
@@ -95,6 +108,8 @@ io.on("connection", socket => {
 })
 
 // ======================= Chat Code END ===============================
+
+// app.use()
 
 const JoeyDB = 'mongodb+srv://Jay:MongoDB.DB@cluster0.q00ek.mongodb.net/letsee';
 const UmmulDB = 'mongodb+srv://Ummulkiram:Password@cluster0.ruu7m.mongodb.net/LearningRoom?retryWrites=true&w=majority';
