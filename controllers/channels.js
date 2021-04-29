@@ -22,6 +22,7 @@ exports.getChannels = (req, res, next) => {
       console.log(channels);
       return res.render("channels", {
         channels: channels,
+        username: req.session.user.username,
         errorMessage: message,
       });
     });
@@ -120,8 +121,10 @@ exports.getChannel = (req, res, next) => {
   console.log(code);
   req.session.code = code;
   channelDatabase.findOne({ code: code }).then((channel) => {
-    req.session.channel = channel;
+    //req.session.channel = channel;
     req.session.channelName = channel.name;
   });
-  res.render("insideChannel", {username : "james"} );
+
+  console.log(req.session.user.username);
+  res.render("InsideChannel", { username: req.session.user.username });
 };

@@ -53,11 +53,7 @@
 			<h1> <% channels %></h1>
 			<% if(channels.length > 0){ %>
 				<% for(let channel of channels){ %>
-<<<<<<< HEAD
-					<li data-channel= <%=channel.code %> >
-=======
-					<!-- <li data-channel= <% channel.code %> > -->
->>>>>>> 6861b0fb9accd5f949ece110753eb3ee3792d943
+					<li data-channel= <%=channel.code %> data-name= <%=username %>>
 						<div class='group'>
 							<div class='photo'>
 								<img src='https://gstatic.com/classroom/themes/img_code.jpg'>
@@ -71,30 +67,7 @@
 					</li>
 				<% } %>
 			<% } %>
-          <!--  <?php
     
-   //          $email=$_SESSION['email'];
-   //          $connection=mysqli_connect("localhost","root","","rock-enroll");
-   //          $sql="select * from channels NATURAL JOIN channel where members='$email'";
-   //          $result=mysqli_query($connection,$sql);
-   //          if(mysqli_num_rows($result)>0)
-            
-   //          {
-   //          while($row=mysqli_fetch_assoc($result))
-   //          {
-			// echo '<li data-channel='.$row['code'].'>';
-			// echo"<div class='group'>";
-			// 		echo"<div class='photo'>";
-			// 		echo"<img src='https://gstatic.com/classroom/themes/img_code.jpg'>";
-			// 		echo"</div>";
-			// 		echo"<div class='description'>";
-			// 		echo'<h4>'.$row['name'].'</h4>';
-			// 		echo"</div>";
-			// 	echo"</div>";
-			//     echo"</li>";
-            }
-        }
-            ?>-->
 		</ol>
 	</div>
 
@@ -149,8 +122,9 @@
 
             $("li").click(function () { 
                 let channelcode = this.getAttribute("data-channel");
+				let name = this.getAttribute("data-name");
                 console.log(channelcode);
-                window.location.href = "/channel/?code="+channelcode;
+                window.location.href = "/channel/?code="+channelcode+"&username="+name;
             });
        
 
