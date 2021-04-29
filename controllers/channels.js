@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const { validationResult } = require("express-validator/check");
 
-const channelDatabase = require("../routes/channelDatabase");
+const channelDatabase = require("../models/channelDatabase");
 
-const todo = require("../routes/todoDatabase");
+const todo = require("../models/todoDatabase");
 
-const userChannelDatabase = require("../routes/userChannelDatabase");
+const userChannelDatabase = require("../models/userChannelDatabase");
 const session = require("express-session");
 
 exports.getChannels = (req, res, next) => {

@@ -3,7 +3,7 @@ const { check, body } = require("express-validator/check");
 
 const router = express.Router();
 
-const Login = require("./database");
+const Login = require("../models/database");
 
 const signIncontroller = require("../controllers/SignIn.js");
 

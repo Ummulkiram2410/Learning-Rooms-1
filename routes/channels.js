@@ -4,9 +4,9 @@ const { check, body } = require("express-validator/check");
 
 const router = express.Router();
 
-const channels = require("./channelDatabase");
+const channels = require("../models/channelDatabase");
 
-const todo = require("./todoDatabase");
+const todo = require("../models/todoDatabase");
 
 const channelController = require("../controllers/channels.js");
 

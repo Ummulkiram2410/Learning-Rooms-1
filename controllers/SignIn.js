@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 const { validationResult } = require("express-validator/check");
 
 const session = require("express-session");
-const Login = require("../routes/database");
+const Login = require("../models/database");
 
 exports.logIn = (req, res, next) => {
   let message = req.flash("error");
