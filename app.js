@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const express = require("express");
 //const csrf = require("csurf");
 
-const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -25,9 +24,11 @@ app.get("/favicon.ico", (req, res) => res.status(204));
 //app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+
 app.use(
   session({ secret: "my secret", resave: false, saveUninitialized: false })
 );
+
 app.use(flash());
 
 app.use(SignIn);
