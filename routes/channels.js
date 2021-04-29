@@ -26,4 +26,5 @@ router.post(
   channelController.joinChannel
 );
 
+router.get("/channel", channelController.getChannel);
 module.exports = router;

@@ -24,7 +24,7 @@ form p {
 
 .task_input {
 	width: 90%;
-	height: 30px;
+	height: 38px;
 	margin-right:8px;
 	padding: 2px 20px;
 	border: 2px solid darkcyan;
@@ -35,7 +35,7 @@ form p {
 }
 .add_btn {
 	cursor:pointer;
-	height: 30px;
+	height: 38px;
 	width:80px;
 	background: black ;
 	color: 	white;
@@ -128,38 +128,6 @@ td.task{
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  --> 
 </head>
     <body>
-    <!--    <?php
-      // initialize errors variable
-    $errors = "";
-
-    // connect to database
-    $db = mysqli_connect("localhost", "root", "", "rock-enroll");
-
-    // insert a quote if submit button is clicked
-    if (isset($_POST['submit'])) {
-      if (empty($_POST['task'])) {
-        $errors = "*You must fill in the task";
-        //unset($_POST['submit']);
-      }else{
-        $task = $_POST['task'];
-        $sql = "INSERT INTO todo (task) VALUES ('$task')";
-        mysqli_query($db, $sql);
-        unset($_POST);
-        unset($_REQUEST);
-        //$_POST=array();
-        header('location: profile.php');
-      }
-    }
-    if (isset($_GET['del_task'])) {
-  $id = $_GET['del_task'];
-
-  mysqli_query($db, "DELETE FROM todo WHERE id='$id'");
-  header('location: profile.php');
-}
-
-?>
--->
-
 <nav class="navbar">
 		<div class="logo">
 			<img id="applogo" src="applogo.png" alt="">
@@ -216,15 +184,16 @@ td.task{
             			</tr>
             		<?php $i++; } ?>-->
                     <% if(tasks.length > 0){ %>
-                    <tr>
+                    
                         <% var i=1 %>
                         <% for(let task of tasks){ %>
+							<tr>
                         <td class="number" width="8"><%- i%></td>
                         <td class="task" width="25px"> <%=task.task%> </td>
                         <td class="action"><a href="/remove/<%= task._id %>">Remove</a></td>
-                        <% i++ %>
+                        </tr>
+						<% i++ %>
                         <% } %>
-                    </tr>
                     <% } %>
             	</tbody>
             </table>
@@ -238,15 +207,6 @@ td.task{
 
 
 </div>
-
-
-<div class="container mynotes" style="display: flex;
-    justify-content: space-evenly;">
-    <a href="mynotes.php"><button class="btn btn-lg btn-primary">My Notes</button></a>
-    <a href="newnote.php"><button class="btn btn-lg btn-primary">Add New </button></a>
-</div>
-
-
 
 <script>
 

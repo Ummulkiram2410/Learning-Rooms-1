@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const eol = require("eol");
+
 const { validationResult } = require("express-validator/check");
 
 const channelDatabase = require("../models/channelDatabase");
@@ -113,4 +115,15 @@ exports.joinChannel = (req, res, next) => {
       return res.redirect("/channels");
     }
   });
+};
+
+exports.getChannel = (req, res, next) => {
+  var code = req.query.code;
+  console.log(code);
+  req.session.code = code;
+  channelDatabase.findOne({ code: code }).then((channel) => {
+    req.session.channel = channel;
+    req.session.channelName = channel.name;
+  });
+  res.render("channel");
 };
