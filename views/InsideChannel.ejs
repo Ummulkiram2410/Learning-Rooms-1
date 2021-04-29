@@ -396,7 +396,7 @@
             $(() => {
               $("#send").click(() => {
                 var message = {
-                  name: `<%=username %>`,  //----- Session user name here
+                  name: `<%= username %>`, 
                   message: $("#message").val()
                 };
                 postMessage(message);
