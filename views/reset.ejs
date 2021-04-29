@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <title>Forgot Password</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        /* background-color: white; */
+        text-align: center;
+        background-image: url(assets/img/svg/separators/curve.svg);
+      }
+      .box {
+        background-color: white;
+        border-radius: 10px;
+        border: 1.5px solid #ccc;
+        width: 400px;
+        padding: 40px;
+        top: 50%;
+        height: 481px;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        transition: box-shadow 0.3s;
+      }
+
+      .box:hover {
+        box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+      }
+
+      .input {
+        background: none;
+        margin: 16px;
+        padding: 17px;
+        width: 85%;
+        height: 37px;
+        border: none;
+        border-radius: 7px;
+        color: black;
+        text-align: left;
+        transition: 0.3s;
+        box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+      }
+
+      .btn {
+        background-color: #1a73e8;
+        padding: 5px;
+        border-radius: 7px;
+        width: 40%;
+        margin: 20px;
+        color: white;
+      }
+
+      .btn:hover {
+        background-color: lightgreen;
+        color: black;
+      }
+
+      h2 {
+        color: black;
+        font: 18px;
+      }
+
+      img {
+        width: 40%;
+        position: absolute;
+        top: -7px;
+        right: 114px;
+      }
+
+      #email,
+      #password {
+        position: absolute;
+        color: grey;
+        font-size: 12px;
+        background-color: white;
+      }
+
+      #email {
+        left: 80px;
+        top: 202px;
+      }
+
+      #password {
+        top: 271px;
+        left: 80px;
+      }
+
+      .signin {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box container">
+      <img src="applogo.png" />
+      <form action="/reset" method="POST">
+        <br /><br /><br />
+        <h2>Forgot Password ?</h2>
+        <br />
+        <h5 style="color: grey">
+          Please enter email used to register on Learning Rooms. We'll send you
+          a link to reset password via email.
+        </h5>
+        <div class="login" style="margin-top: 30px">
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            class="input"
+            required
+          />
+          <br />
+        </div>
+        <div class="signin">
+          <button style="margin-left: 12px" type="submit" class="btn">
+            Reset Password
+          </button>
+        </div>
+        <div>
+          <a style="margin-left: 5px" href="login2.html">Back to login page!</a>
+        </div>
+      </form>
+      <br /><br /><br />
+    </div>
+  </body>
+</html>

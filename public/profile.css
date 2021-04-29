@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+* {
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("profilebg.png");
+  background-position: top;
+  background-size: cover;
+}
+
+.navbar {
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  height: 50px;
+  border-bottom: 2px solid whitesmoke;
+}
+
+.logo {
+  display: flex;
+  flex: 0.7;
+}
+
+.logo > img {
+  width: 120px;
+  height: 100px;
+  margin-left: 5px;
+  position: relative;
+  top: -28px;
+}
+
+.userimage > img {
+  width: 30px;
+  height: 30px;
+  margin-left: 40px;
+  border-radius: 80px;
+}
+
+span {
+  height: 30px;
+  width: 30px;
+  padding-top: 5px;
+  padding-left: 6px;
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 55px;
+}
+
+.dropdown-channel {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 94px;
+  text-align: center;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 52.4px;
+  right: 92px;
+}
+
+.dropdown-channel a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-chanel a:hover {
+  background-color: #ddd;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 103px;
+  text-align: center;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 52.4px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.userimage > img:hover {
+  cursor: pointer;
+  background-color: rgb(212, 211, 211);
+}
+.add_channel > img:hover {
+  cursor: pointer;
+  background-color: rgb(212, 211, 211);
+  border-radius: 50px;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown-channel a:hover {
+  background-color: #ddd;
+}
+.header {
+  margin-top: 20px;
+  padding-left: 50px;
+  width: 80px;
+  display: flex;
+  margin-left: 10px;
+}
+
+.header > a {
+  margin-left: 30px;
+}
+
+.header:hover {
+  cursor: pointer;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 2px;
+}
+
+.todo > img {
+  margin-right: 8px;
+}
+
+.todo > label {
+  font-family: "Roboto";
+  color: #1a73e8;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 40px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.channel {
+  margin-left: 25px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  padding-bottom: 15px;
+  margin-right: 25px;
+}
+
+.channel#blur.active {
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.rooms {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.group {
+  width: 250px;
+  padding: 0px;
+  height: 220px;
+  border-radius: 18px;
+}
+.photo > img {
+  width: 250px;
+  height: 168px;
+  padding-top: 0.2px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  background-position: center;
+}
+
+.photo {
+  height: 140px;
+}
+
+.description {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding-top: 6px;
+  text-align: left;
+  padding-left: 8px;
+  color: black;
+  background-color: #05bbaa;
+  margin-top: 28px;
+  font-size: 18px;
+  height: 45px;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  font-family: "Roboto";
+}
+
+.input {
+  margin: 16px;
+  padding: 17px;
+  width: 85%;
+  height: 37px;
+  border: none;
+  border-radius: 7px;
+  color: black;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+
+input::-webkit-outer-spin-button,
+::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+ol > li {
+  margin-right: 28px;
+  margin-top: 20px;
+  cursor: pointer;
+  border: 1px solid black;
+
+  border-radius: 18px;
+}
+
+#ontop > img {
+  width: 125px;
+  height: 130px;
+  position: relative;
+  top: -58px;
+  right: -38px;
+  margin-bottom: -57px;
+}
+
+#ontop > form {
+  text-align: center;
+}
+
+#ontop {
+  position: fixed;
+  top: 40%;
+  color: black;
+  left: 50%;
+  border: 2px solid purple;
+  border-radius: 24px;
+  transform: translate(-50%, -50%);
+  width: 210px;
+  padding: 50px;
+  background-color: #05bbaa;
+  visibility: hidden;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0, 0.3);
+  background-color: white;
+  opacity: 0;
+}
+
+#ontop.active {
+  visibility: visible;
+  transition: 0.5s;
+  opacity: 1;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0, 0.3);
+}
+
+.btn {
+  background-color: #1a73e8;
+  padding: 11px;
+  border-radius: 7px;
+  border-width: 0px;
+  width: 90%;
+  font-size: 15px;
+  height: 60%;
+  margin: 20px;
+  color: white;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: lightgreen;
+  color: black;
+}
+
+#ontop2 > img {
+  width: 125px;
+  height: 130px;
+  position: relative;
+  top: -58px;
+  right: -70px;
+  margin-bottom: -57px;
+}
+
+#ontop2 > form {
+  text-align: center;
+}
+
+#ontop2 {
+  position: fixed;
+  top: 40%;
+  color: black;
+  left: 50%;
+  border-radius: 24px;
+  border: 2px solid purple;
+  transform: translate(-50%, -50%);
+  width: 258px;
+  padding: 50px;
+  visibility: hidden;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0, 0.3);
+  background-color: white;
+  opacity: 0;
+}
+
+#ontop2.active {
+  visibility: visible;
+  transition: 0.5s;
+  opacity: 1;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0, 0.3);
+}
+
+ul {
+  list-style-type: none;
+  width: 80vw;
+  padding: none;
+}
+
+ul > li {
+  display: flex;
+  width: 93%;
+  flex-direction: column;
+  align-content: stretch;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.input_form {
+  display: flex;
+
+  margin-left: 10px;
+}
+
+table > tr > th {
+  text-align: center;
+}
+
+table > tr > td {
+  text-align: center;
+}
