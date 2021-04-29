@@ -384,7 +384,6 @@
               <button id="send" class="addBtn" style="border: none;">Send</button>
             </div>
           </div>
-      
           <script>
             var socket = io();
       
@@ -392,7 +391,7 @@
             $(() => {
               $("#send").click(() => {
                 var message = {
-                  name: "Jaimin",  //----- Session user name here
+                  name: `<%=username %>`,  //----- Session user name here
                   message: $("#message").val()
                 };
                 postMessage(message);
