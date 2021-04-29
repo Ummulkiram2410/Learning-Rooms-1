@@ -14,6 +14,7 @@
     "nodemon": "^1.19.4"
   },
   "dependencies": {
+    "@supercharge/strings": "github:supercharge/strings",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
@@ -26,6 +27,7 @@
     "express-validator": "^6.10.1",
     "mongodb": "^3.1.6",
     "mongoose": "^5.2.17",
+    "multer": "^1.4.2",
     "mysql2": "^1.6.1",
     "nodemailer": "^6.6.0",
     "pug": "^2.0.3",
