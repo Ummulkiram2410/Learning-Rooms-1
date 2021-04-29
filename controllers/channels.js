@@ -8,6 +8,7 @@ const todo = require("../routes/todoDatabase");
 
 const userChannelDatabase = require("../routes/userChannelDatabase");
 const session = require("express-session");
+
 exports.getChannels = (req, res, next) => {
   let message = req.flash("error");
   if (message.length > 0) {

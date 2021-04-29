@@ -8,6 +8,10 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
 
+// Below 3 for chat
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
+
 const app = express();
 const Login = require("./routes/database");
 
@@ -22,6 +26,8 @@ const channels = require("./routes/channels");
 app.get("/favicon.ico", (req, res) => res.status(204));
 
 //app.use(cookieParser());
+
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -45,3 +51,12 @@ mongoose.connect(
 );
 //const dbConnection = mongoose.connection;
 app.listen(3000);
+
+
+// ============ Jaimin ============
+
+
+
+io.on("connection", socket => {
+  console.log("a user has been connected");
+});

@@ -16,5 +16,6 @@ const userChannelSchema = new Schema({
     required: true,
   },
 });
+
 const userChannel = mongoose.model("userChannel", userChannelSchema);
 module.exports = userChannel;
