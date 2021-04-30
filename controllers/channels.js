@@ -128,14 +128,12 @@ exports.getChannel = (req, res, next) => {
   var code = req.query.code;
   console.log(code);
   req.session.code = code;
-  let firstquery = new Promise((resolve, reject) => {
-    userChannelDatabase.find({ code: req.session.code }).then((channel) => {
-      //req.session.channel = channel;
-      console.log(channel[0].name);
-      console.log("HI");
-      req.session.channelName = channel[0].name;
-      console.log(code);
-    });
+  userChannelDatabase.find({ code: req.session.code }).then((channel) => {
+    //req.session.channel = channel;
+    console.log(channel[0].name);
+    console.log("HI");
+    req.session.channelName = channel[0].name;
+    console.log(code);
   });
   var files = [];
   //files.title = "xyz";

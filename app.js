@@ -19,7 +19,7 @@ var io = require("socket.io")(http);
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "/public")));
 
 const SignIn = require("./routes/SignIn");
 const channels = require("./routes/channels");
