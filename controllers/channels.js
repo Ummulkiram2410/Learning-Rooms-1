@@ -108,7 +108,7 @@ exports.joinChannel = (req, res, next) => {
       const name = channel.name;
       console.log(name);
       const userChannel = new userChannelDatabase({
-        email: session.user.email,
+        email: req.session.user.email,
         code: code,
         name: name,
       });
