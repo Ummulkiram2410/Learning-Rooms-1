@@ -349,20 +349,10 @@
           />
           <br />
           <div style="overflow-y: scroll; height: 60vh; margin-top: 4px">
-            <!-- <ul class="list-group" id="myMenu">
-              <% if(files.length > 0){ %>
-              <% for(let file of files){ %>
-              <li class="list-group-item">
-                <a href="<%=file.fileUrl %>"><%=file.title %></a><br/>
-                <span style="margin-left: 12px;">  - <%=file.userId %></span>
-              </li>
-              <%}%>
-              <%}%> -->
-              <ul>
-              
+              <ul class="list-group" id="myMenu">
               <% for(let file of files){ %>
              <li class="list-group-item">
-                <a href="<%= file.noteId.fileUrl %>"> <%= file.noteId.title %></a><br/>
+                <a name="<%= file.noteId.title %>" href="<%= file.noteId.fileUrl %>"><%= file.noteId.title %></a><br/>
                 <span style="margin-left: 12px;"><%= file.noteId.name %></span>
               </li>
 
@@ -445,9 +435,10 @@
         filter = input.value.toUpperCase();
         ul = document.getElementById("myMenu");
         li = ul.getElementsByTagName("li");
-
+        console.log(li);
         // Loop through all list items, and hide those who don't match the search query
         for (i = 0; i < li.length; i++) {
+          console.log("hi");
           a = li[i].getElementsByTagName("a")[0];
           if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";

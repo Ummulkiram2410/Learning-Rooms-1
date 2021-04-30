@@ -181,9 +181,8 @@
         <div class="userimage">
           <img src="user.png" alt="Error" />
           <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+            <a href="/deleteAccount">Delete Account</a>
+            <a href="/logout">Logout</a>
           </div>
         </div>
       </div>
@@ -257,6 +256,9 @@
       $("#applogo").click(function () {
         window.location.href = "/channels";
       });
+      $(".userimage").click(function(){
+  			$(".dropdown-content").toggle();
+		});
     </script>
   </body>
 </html>
