@@ -15,10 +15,10 @@ const fileSchema = Schema({
     type: String,
     required: true,
   },
-  // name: {
-  //   type: String,
-  //   required: true
-  // }
+  name: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = mongoose.model("File", fileSchema);

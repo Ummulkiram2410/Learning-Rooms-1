@@ -27,7 +27,8 @@ exports.postFile = (req, res, next) => {
   const title = req.body.title;
   const filepath = req.file.path
   const channelNames = req.body.channelName;
-  //const name = res.session.user.username;
+  const name = req.session.user.username;
+  console.log(name);
 
   console.log("channels : ", channelNames);
 
@@ -37,7 +38,7 @@ exports.postFile = (req, res, next) => {
     title: title,
     fileUrl: filepath,
     email: req.session.user.email,
-    //name: name
+    name: name
   });
 
   file.save().then((result) => {
