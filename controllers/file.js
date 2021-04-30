@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const path = require('path');
+const fs = require('fs');
 const session = require("express-session");
 
 const File = require("../models/file");
@@ -23,10 +25,10 @@ exports.getFile = (req, res, next) => {
 
 exports.postFile = (req, res, next) => {
   const title = req.body.title;
-  const filepath = req.file.path;
+  const filepath = req.file.path
   const channelNames = req.body.channelName;
-  const userId = "Jaimin";
-  const channelId = "id1";
+  const name = req.session.user.username;
+  console.log(name);
 
   console.log("channels : ", channelNames);
 
@@ -36,6 +38,7 @@ exports.postFile = (req, res, next) => {
     title: title,
     fileUrl: filepath,
     email: req.session.user.email,
+    name: name
   });
 
   file
@@ -66,3 +69,16 @@ exports.postFile = (req, res, next) => {
 
   res.redirect("/file");
 };
+
+exports.downloadFile = (req, res, next) => {
+    const fileId = req.params.noteId;
+    console.log("fileId-", fileId)
+    const filepath = path.join(__dirname, "/../", "Notefiles", fileId);
+    console.log("filepath:", filepath);
+    fs.readFile(filepath, (err, data)=>{
+      if(err){
+        return next(err);
+      }
+      res.send(data);
+    })
+}

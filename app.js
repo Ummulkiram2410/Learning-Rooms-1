@@ -20,6 +20,10 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.use(express.static(path.join(__dirname, "/public")));
+app.use("/Notefiles", express.static(path.join(__dirname, "Notefiles")));
+
+
+// app.use(express.static("Notefiles", path.join(__dirname, "Notefiles")));
 
 const SignIn = require("./routes/SignIn");
 const channels = require("./routes/channels");
@@ -42,7 +46,7 @@ app.get("/favicon.ico", (req, res) => res.status(204));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage }).single("file"));
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static("/Notefiles", path.join(__dirname, "Notefiles")));
 
 app.use(
   session({ secret: "my secret", resave: false, saveUninitialized: false })
