@@ -8,6 +8,8 @@ const todo = require("../models/todoDatabase");
 
 const userChannelDatabase = require("../models/userChannelDatabase");
 
+const File = require("../models/file");
+
 const eventDatabase = require("../models/eventDatabase");
 const session = require("express-session");
 
@@ -135,13 +137,20 @@ exports.getChannel = (req, res, next) => {
       console.log(code);
     });
   });
-
+  var files = [];
+  //files.title = "xyz";
+  File.find({ channelId: code }).then((file) => {
+    files = file;
+    //files.title = "xyz";
+    console.log(files);
+  });
   //console.log(req.session.user.username);
   eventDatabase.find({ code: req.session.code }).then((tasks) => {
     res.render("insideChannel", {
       tasks: tasks,
       username: req.session.user.username,
       channelName: req.session.channelName,
+      files: files,
     });
   });
 };
