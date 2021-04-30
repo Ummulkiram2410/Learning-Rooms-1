@@ -142,19 +142,19 @@ exports.getChannel = (req, res, next) => {
     mytask = tasks;
   });
 
-  var notefiles = [];
+  //var notefiles = [];
   ChannelNote.find({ code: code })
     .populate("noteId")
     .then((chn) => {
-      console.log("chn :", chn);
-      notefiles = chn;
-      console.log("notefiles 2 :", notefiles);
+      //console.log("chn :", chn);
+      //notefiles = chn;
+      //console.log("notefiles :", chn);
 
       return res.render("insideChannel", {
         tasks: mytask,
         username: req.session.user.username,
         channelName: req.session.channelName,
-        files: notefiles,
+        files: chn,
       });
     });
 

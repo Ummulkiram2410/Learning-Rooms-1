@@ -8,4 +8,6 @@ router.get('/file', fileController.getFile);
 
 router.post('/file', fileController.postFile);
 
+router.get('/channel/Notefiles/:noteId', fileController.downloadFile)
+
 module.exports = router;

@@ -359,21 +359,15 @@
               <%}%>
               <%}%> -->
               <ul>
-                
-                <%  if(files.length > 0) { %>
-                  <h1>yes</h1>
-                  <% } %>
+              
               <% for(let file of files){ %>
              <li class="list-group-item">
                 <a href="<%= file.noteId.fileUrl %>"> <%= file.noteId.title %></a><br/>
                 <span style="margin-left: 12px;"><%= file.noteId.email %></span>
               </li>
-
+              
               <% } %>
-              <li class="list-group-item">
-                <a href="#">HTML</a><br/>
-                <span style="margin-left: 12px;"> - Ummul</span>
-              </li>
+              
             </ul>
           </div>
           <br />
