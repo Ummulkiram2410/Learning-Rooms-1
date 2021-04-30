@@ -6,17 +6,17 @@ const ChannelNote = require("../models/channelNote");
 const userChannelDatabase = require("../models/userChannelDatabase");
 
 exports.getFile = (req, res, next) => {
-  var getChannels = [];  
+  var getChannels = [];
   userChannelDatabase
     .find({ email: req.session.user.email })
     .then((channel) => {
       channels = channel;
     });
-    
+
   File.find({ email: req.session.user.email }).then((file) => {
     console.log("files:", file);
     console.log("channels :", channels);
-    return res.render("notes", { files: file, channels: channels});
+    return res.render("notes", { files: file, channels: channels });
   });
   //res.render("notes");
 };
@@ -38,28 +38,31 @@ exports.postFile = (req, res, next) => {
     email: req.session.user.email,
   });
 
-  file.save().then((result) => {
+  file
+    .save()
+    .then((result) => {
       console.log("File Added");
       console.log("file Id : ", file._id);
-      
     })
     .catch((err) => {
-     console.log(err);
+      console.log(err);
     });
 
-   for(i=0; i<channelNames.length; i++){
-      let channelNote = new ChannelNote({
-        code: channelNames[i],
-        noteId: file
-      });
-  
-      channelNote.save().then(result => {
+  for (i = 0; i < channelNames.length; i++) {
+    let channelNote = new ChannelNote({
+      code: channelNames[i],
+      noteId: file,
+    });
+
+    channelNote
+      .save()
+      .then((result) => {
         console.log("Files added to channels");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      })
-   }
-    
-   res.redirect("/channels");
+      });
+  }
+
+  res.redirect("/file");
 };
