@@ -2,45 +2,64 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 
 const File = require("../models/file");
+const ChannelNote = require("../models/channelNote");
 const userChannelDatabase = require("../models/userChannelDatabase");
 
 exports.getFile = (req, res, next) => {
-  var channels = [];
+  var getChannels = [];  
   userChannelDatabase
     .find({ email: req.session.user.email })
-    .then((channels) => {
-      channels = channels;
+    .then((channel) => {
+      channels = channel;
     });
+    
   File.find({ email: req.session.user.email }).then((file) => {
-    //return res.render("notes", { file: file,channels: channels});
+    console.log("files:", file);
+    console.log("channels :", channels);
+    return res.render("notes", { files: file, channels: channels});
   });
-  res.render("notes");
+  //res.render("notes");
 };
 
 exports.postFile = (req, res, next) => {
   const title = req.body.title;
-  const description = req.body.description;
   const filepath = req.file.path;
+  const channelNames = req.body.channelName;
   const userId = "Jaimin";
   const channelId = "id1";
+
+  console.log("channels : ", channelNames);
 
   console.log(filepath);
 
   const file = new File({
     title: title,
-    description: description,
     fileUrl: filepath,
-    userId: "Jaimin",
-    channelId: "Jaimin",
+    email: req.session.user.email,
   });
 
-  file
-    .save()
-    .then((result) => {
+  file.save().then((result) => {
       console.log("File Added");
-      res.redirect("/channel");
+      console.log("file Id : ", file._id);
+      
     })
     .catch((err) => {
-      console.log(err);
+     console.log(err);
     });
+
+   for(i=0; i<channelNames.length; i++){
+      let channelNote = new ChannelNote({
+        code: channelNames[i],
+        noteId: file
+      });
+  
+      channelNote.save().then(result => {
+        console.log("Files added to channels");
+      })
+      .catch(err => {
+        console.log(err);
+      })
+   }
+    
+   res.redirect("/channels");
 };

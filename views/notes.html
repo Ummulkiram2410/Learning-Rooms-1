@@ -210,21 +210,33 @@
             <input type="file" name="file" /><br /><br /><br />
 
             <label><h6>Channels</h6></label>
-            <div class="form-check">
 
-            <% for(let chnl of channels){ %>
-            
+            <div class="form-check">
               <label class="form-check-label">
                 <input
-                  name = "channelName"
                   type="checkbox"
                   class="form-check-input"
-                  value="<%= chnl.code %>"
-                /><%= chnl.name %>
+                  value=""
+                />Option 1
               </label>
               <br />
-              
-            <% } %>
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                />Option 1
+              </label>
+              <br>
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                />Option 1
+              </label>
+            
+              </label>
 
             </div>
             <p></p>
@@ -237,26 +249,18 @@
           <hr />
           <br />
           <ul class="list-group">
-            <% for(let file of files){ %>
-            <a href="<% file.fileUrl %>">
+            <a href="#">
               <li
                 class="list-group-item d-flex justify-content-between align-items-center"
               >
-                <!-- Github -->
-                 <%= file.title %> 
+                GitHub
               </li>
             </a>
-            <% } %>
           </ul>
           <br />
           <!-- <img src="mynotes.png" /> -->
         </div>
       </div>
     </div>
-    <script>
-      $("#applogo").click(function () {
-        window.location.href = "/channels";
-      });
-    </script>
   </body>
 </html>

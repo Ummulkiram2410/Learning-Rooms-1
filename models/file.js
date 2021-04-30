@@ -7,23 +7,11 @@ const fileSchema = Schema({
     type: String,
     required: true,
   },
-  description: {
-    type: String,
-    //required : true
-  },
   fileUrl: {
     type: String,
     required: true,
   },
-  userId: {
-    type: String,
-    required: true,
-  },
   email: {
-    type: String,
-    required: true,
-  },
-  channelId: {
     type: String,
     required: true,
   },
