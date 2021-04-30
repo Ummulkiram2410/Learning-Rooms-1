@@ -9,6 +9,7 @@ const todo = require("../models/todoDatabase");
 const userChannelDatabase = require("../models/userChannelDatabase");
 
 const File = require("../models/file");
+const ChannelNote = require("../models/channelNote")
 
 const eventDatabase = require("../models/eventDatabase");
 const session = require("express-session");
@@ -126,31 +127,32 @@ exports.joinChannel = (req, res, next) => {
 
 exports.getChannel = (req, res, next) => {
   var code = req.query.code;
+  var chnName = req.query.name;
   console.log(code);
   req.session.code = code;
-  userChannelDatabase.find({ code: req.session.code }).then((channel) => {
-    //req.session.channel = channel;
-    console.log(channel[0].name);
-    console.log("HI");
-    req.session.channelName = channel[0].name;
-    console.log(code);
+    mytask = tasks;
   });
-  var files = [];
-  //files.title = "xyz";
-  File.find({ channelId: code }).then((file) => {
-    files = file;
-    //files.title = "xyz";
-    console.log(files);
-  });
-  //console.log(req.session.user.username);
-  eventDatabase.find({ code: req.session.code }).then((tasks) => {
-    res.render("insideChannel", {
-      tasks: tasks,
+
+  var notefiles = [];
+  ChannelNote.find({code : code})
+  .populate('noteId')
+  .then(chn => {
+    console.log("chn :", chn);
+    notefiles = chn;
+    console.log("notefiles 2 :", notefiles);
+
+    return res.render("insideChannel", {
+      tasks: mytask,
       username: req.session.user.username,
       channelName: req.session.channelName,
-      files: files,
+      files: notefiles,
     });
+
   });
+
+  //console.log("notefiles :", notefiles);
+
+
 };
 
 exports.events = (req, res, next) => {

@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
     <head>
         <title>Upload Notes</title>
     </head>
@@ -16,4 +16,272 @@
             <button type = "submit">Upload</button>
         </form>
     </body>
+</html> -->
+
+<html>
+  <head>
+    <title>My notes</title>
+
+    <style>
+      .navbar {
+        display: flex;
+        background-color: white;
+        justify-content: space-between;
+        height: 50px;
+        border-bottom: 2px solid whitesmoke;
+      }
+
+      .logo {
+        display: flex;
+        flex: 0.7;
+      }
+
+      .logo > img {
+        width: 120px;
+        height: 100px;
+        margin-left: 2px;
+        position: relative;
+        top: -34px;
+      }
+
+      .userimage > img {
+        width: 30px;
+        height: 30px;
+        margin-left: 40px;
+        border-radius: 80px;
+      }
+
+      nav > span {
+        height: 30px;
+        width: 30px;
+        padding-top: 5px;
+        padding-left: 6px;
+        cursor: pointer;
+      }
+
+      .user {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 55px;
+        position: relative;
+        top: -34px;
+      }
+
+      .dropdown-channel {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        width: 94px;
+        text-align: center;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        top: 52.4px;
+        right: 92px;
+      }
+
+      .dropdown-channel a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .dropdown-chanel a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        width: 103px;
+        text-align: center;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        top: 52.4px;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .userimage > img:hover {
+        cursor: pointer;
+        background-color: rgb(212, 211, 211);
+      }
+      .add_channel > img:hover {
+        cursor: pointer;
+        background-color: rgb(212, 211, 211);
+        border-radius: 50px;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown-channel a:hover {
+        background-color: #ddd;
+      }
+      .h1 {
+        margin-top: 10%;
+      }
+
+      .col-sm-6 img {
+        width: 100%;
+        height: auto;
+        float: right;
+      }
+
+      .row {
+        margin-top: 11.5%;
+      }
+
+      .form-control {
+        margin-top: 5%;
+      }
+
+      .list {
+        text-align: center;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      ul > li {
+        border-radius: 25px;
+        border: 2px solid whitesmoke;
+        border-bottom: none;
+      }
+
+      .addBtn {
+        padding-top: 2px;
+        width: 35%;
+        height: 8%;
+        margin-left:65%;
+        border: none;
+        color: white;
+        text-align: center;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 8px;
+        background: #1a73e8;
+        opacity: 0.9;
+      }
+      .addBtn:hover {
+        opacity: 1;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+
+  <body
+    style="
+      background-image: url(profilebg.png);
+      background-position: center;
+      background-size: cover;
+    "
+  >
+    <nav class="navbar">
+      <div class="logo">
+        <img id="applogo" src="applogo.png" alt="" />
+      </div>
+      <div class="user">
+        <div class="userimage">
+          <img src="user.png" alt="Error" />
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <br />
+      <br />
+      <div class="row" style="margin: auto">
+        <div class="col-sm-4">
+          <h3 style="text-align: left">Add Notes</h3>
+          <hr />
+          <br />
+          <div style="background-color: whitesmoke;padding:15px; margin: none;border-radius: 12px;overflow-y: scroll;min-height: 50vh; max-height: 60vh;">
+          <form action="/file" method="POST" enctype="multipart/form-data">
+            <label for="title"><h5>Title</h5></label><br />
+            <input
+              type="text"
+              name="title"
+              style="width: 300px"
+            /><br /><br /><br />
+
+            <label for="file"><h6>Upload Your File</h6></label><br />
+            <input type="file" name="file" /><br /><br /><br />
+
+            <label><h6>Channels</h6></label>
+
+            <div class="form-check">
+
+              <!-- <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                />Option 1
+              </label>
+              <br />
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                />Option 1
+              </label>
+              <br>
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                />Option 1
+              </label> 
+            
+              </label> -->
+
+            </div>
+            <p></p>
+            <button type="submit" class="addBtn">Upload</button>
+        </div> 
+        </form>
+        </div>
+        <div class="col-sm-6 list">
+          <h3 style="text-align: left">My Notes</h3>
+          <hr />
+          <br />
+          <ul class="list-group">
+            <a href="#">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                GitHub
+              </li>
+            </a>
+          </ul>
+          <br />
+          <!-- <img src="mynotes.png" /> -->
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
